@@ -10,7 +10,7 @@ class Opening extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: SizedBox(
             height: size.height,
@@ -36,8 +36,8 @@ class Opening extends StatelessWidget {
                     'Best to test',
                     style: GoogleFonts.fasthand(
                       textStyle: const TextStyle(
-                        //  fontStyle: FontStyle.italic,
                         fontSize: 30,
+                        color: Colors.cyan
                       ),
                     ),
                   ),
@@ -59,7 +59,7 @@ class Opening extends StatelessWidget {
 
                         style: ButtonStyle(
                           backgroundColor:
-                                MaterialStateProperty.all(Colors.black),
+                                MaterialStateProperty.all(Colors.cyan),
                             shape:
 
                                 MaterialStateProperty.all<RoundedRectangleBorder>(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Screens/categories.dart';
+
 class HomeScreen1 extends StatelessWidget {
   const HomeScreen1({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: SafeArea(
               bottom: true,
@@ -15,7 +15,6 @@ class HomeScreen1 extends StatelessWidget {
               top: true,
               child: Center(
                   child: Column(children: [
-
                 Container(
                   width: 250,
                   height: 250,
@@ -23,13 +22,12 @@ class HomeScreen1 extends StatelessWidget {
                   child: const Align(
                     alignment: Alignment.topCenter,
                     child: Image(
-                      alignment: Alignment.topCenter,
+                        alignment: Alignment.topCenter,
                         image: AssetImage(
-                      'images/quizzchannel-removebg-preview.png',
-                    )),
+                          'images/quizzchannel-removebg-preview.png',
+                        )),
                   ),
                 ),
-
                 Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
@@ -37,7 +35,7 @@ class HomeScreen1 extends StatelessWidget {
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40),
                     ),
-                    color: Colors.orangeAccent,
+                    color: Colors.cyan,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20),
@@ -70,6 +68,7 @@ class HomeScreen1 extends StatelessWidget {
                         ),
                         const SizedBox(height: 30),
                         TextFormField(
+                          obscureText: true,
                           decoration: InputDecoration(
                             hintText: 'Enter your Password',
                             prefixIcon: const Icon(Icons.lock_outline),
@@ -93,11 +92,11 @@ class HomeScreen1 extends StatelessWidget {
                                 ),
                                 TextButton(
                                   onPressed: () {},
-                                  child: const Text(
+                                  child:  Text(
                                     'Register?',
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: Colors.blue,
+                                      color: Colors.blue[900],
                                     ),
                                   ),
                                 ),
@@ -105,10 +104,9 @@ class HomeScreen1 extends StatelessWidget {
                             ),
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.pushAndRemoveUntil(
+                                Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const HomeScreen1()),
-                                  (route) => false,
+                                  MaterialPageRoute(builder: (context) => const Categories()),
                                 );
                               },
                               style: ButtonStyle(
@@ -136,8 +134,13 @@ class HomeScreen1 extends StatelessWidget {
                             const SizedBox(height: 16),
                             const Icon(
                               Icons.fingerprint,
-                              color: Colors.blue,
+                              color: Colors.black,
                               size: 50,
+                            ),
+                            Text('USE TOUCH ID',
+                            style: TextStyle(
+                              color: Colors.black26
+                            ),
                             ),
                             Row(
                               children: [
@@ -156,11 +159,11 @@ class HomeScreen1 extends StatelessWidget {
                                 const Spacer(),
                                 TextButton(
                                   onPressed: () {},
-                                  child: const Text(
+                                  child:  Text(
                                     'Forgot password',
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: Colors.blue,
+                                      color: Colors.blue[900],
                                     ),
                                   ),
                                 ),
