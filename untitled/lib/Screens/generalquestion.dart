@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/Screens/openingscreen.dart';
 import 'dart:math';
-
+import 'package:untitled/shared/answer_button.dart';
 import 'score.dart';
+import 'package:untitled/shared/appbar.dart';
+
 
 
 
 class GeneralQuestions extends StatefulWidget {
+  const GeneralQuestions({super.key});
+
   @override
   _GeneralQuestionsState createState() => _GeneralQuestionsState();
 }
@@ -29,36 +33,14 @@ class _GeneralQuestionsState extends State<GeneralQuestions> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title:  Text('SPORTS',
-          style: GoogleFonts.teko(
-            textStyle: const TextStyle(
-                fontSize: 30,
-                letterSpacing: 2,
-                fontWeight: FontWeight.bold
-            ),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Opening()),
-                );              },
-              child: Image.asset(
-                'images/quizzchannel-removebg-preview.png',
-                width: 60.0,
-                height: 60.0,
-              ),
-            ),
-          ),
-        ],
-        // ...other properties of the AppBar
-      ),
+      appBar: CustomAppBar(
+        title:'GENERAL',
+          onLogoTap:(){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Opening()),);},
+           ),
+
       body: SafeArea(
         child: Center(
 
@@ -179,126 +161,30 @@ class _GeneralQuestionsState extends State<GeneralQuestions> {
 
               const SizedBox(height: 7,),
 
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isFlipped = !isFlipped;
-                  });
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                  MaterialStateProperty.all<Color>(
-                      Colors.cyan),
-                  shape: MaterialStateProperty.all<
-                      RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10, horizontal: 103),
-                  child: Text(
-                    'نظرية التطور',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
+              AnswerButton(answerText: 'نظرية التطور', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
 
+              AnswerButton(answerText: 'آدم وحواء', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
 
-              const SizedBox(height: 7,),
+              AnswerButton(answerText: 'الانفجار العظيم', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
 
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isFlipped = !isFlipped;
-                  });
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                  MaterialStateProperty.all<Color>(
-                      Colors.cyan),
-                  shape: MaterialStateProperty.all<
-                      RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10, horizontal: 110),
+              AnswerButton(answerText: 'View Score', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
 
-                  child: Text(
-                    'آدم وحواء',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 7,),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isFlipped = !isFlipped;
-                  });
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                  MaterialStateProperty.all<Color>(
-                      Colors.cyan),
-                  shape: MaterialStateProperty.all<
-                      RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10, horizontal: 97),
-
-                  child: Text(
-                    'الانفجار العظيم',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 7,),
-              ElevatedButton(
-                onPressed:(){
-                Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) =>  ScoreScreen(score: 100)),
-              );},
-                  style: ButtonStyle(
-                    backgroundColor:
-                    MaterialStateProperty.all<Color>(
-                        Colors.cyan),
-                    shape: MaterialStateProperty.all<
-                        RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 30),
-                    child: Text(
-                      'View Score',
-                      style: TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                  )
             ],
           ),
         ),

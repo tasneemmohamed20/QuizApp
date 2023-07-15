@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/Screens/openingscreen.dart';
 import 'dart:math';
-
 import 'score.dart';
+import 'package:untitled/shared/answer_button.dart';
+import 'package:untitled/shared/appbar.dart';
+
+
 
 class HistoryQuestions extends StatefulWidget {
   @override
@@ -27,35 +30,14 @@ class _HistoryQuestionsState extends State<HistoryQuestions> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: Text(
-          'SPORTS',
-          style: GoogleFonts.teko(
-            textStyle: const TextStyle(
-                fontSize: 30, letterSpacing: 2, fontWeight: FontWeight.bold),
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Opening()),
-                );
-              },
-              child: Image.asset(
-                'images/quizzchannel-removebg-preview.png',
-                width: 60.0,
-                height: 60.0,
-              ),
-            ),
-          ),
-        ],
-        // ...other properties of the AppBar
-      ),
+      appBar: CustomAppBar(
+        title:'HISTORY',
+          onLogoTap:(){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Opening()),);},
+           ),
+
       body: SafeArea(
         child: Center(
           child: Column(
@@ -140,147 +122,35 @@ class _HistoryQuestionsState extends State<HistoryQuestions> {
                       ));
                     }),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isFlipped = !isFlipped;
-                  });
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.cyan),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 70),
-                  child: Text(
-                    'Muḥammad Naguib',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
 
-              const SizedBox(
-                height: 7,
-              ),
 
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isFlipped = !isFlipped;
-                  });
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.cyan),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 68),
-                  child: Text(
-                    'Gamal Abdel Nasser',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
 
-              const SizedBox(
-                height: 7,
-              ),
+              AnswerButton(answerText: 'Muḥammad Naguib', onTap: (){
 
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isFlipped = !isFlipped;
-                  });
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.cyan),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 95),
-                  child: Text(
-                    'Anwar Sadat',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    isFlipped = !isFlipped;
-                  });
-                },
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.cyan),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 86),
-                  child: Text(
-                    'Hosni Mubarak',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed:(){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>  ScoreScreen(score: 100)),
-                  );},
-                style: ButtonStyle(
-                  backgroundColor:
-                  MaterialStateProperty.all<Color>(
-                      Colors.cyan),
-                  shape: MaterialStateProperty.all<
-                      RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10, horizontal: 30),
-                  child: Text(
-                    'View Score',
-                    style: TextStyle(
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-              )
+              setState(() {
+              isFlipped = !isFlipped;
+              });
+              },),
+              AnswerButton(answerText: 'Gamal Abdel Nasser', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
+              AnswerButton(answerText: 'Anwar Sadat', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
+              AnswerButton(answerText: 'Hosni Mubarak', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
+              AnswerButton(answerText: 'View Score', onTap: (){
+                setState(() {
+                  isFlipped = !isFlipped;
+                });
+              },),
 
             ],
           ),

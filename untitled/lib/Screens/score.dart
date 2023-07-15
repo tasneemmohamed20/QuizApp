@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/Screens/categories.dart';
+import 'package:untitled/Screens/quest.dart';
+
 
 import 'openingscreen.dart';
 
@@ -68,6 +70,8 @@ class ScoreScreen extends StatelessWidget {
             const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
+                index=0;
+                counter=0;
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) =>  const Categories()),
