@@ -3,14 +3,14 @@ import 'package:untitled/Screens/categories.dart';
 
 final _loginFormKey = GlobalKey<FormState>();
 
-
 class HomeScreen1 extends StatelessWidget {
-  const HomeScreen1({super.key});
+
+   const HomeScreen1({super.key});
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[400],
         body: SingleChildScrollView(
           child: SafeArea(
               bottom: true,
@@ -35,12 +35,12 @@ class HomeScreen1 extends StatelessWidget {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
                       topRight: Radius.circular(40),
                     ),
-                    color: Colors.cyan,
+                    color: Colors.cyan.shade100,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20),
@@ -75,6 +75,7 @@ class HomeScreen1 extends StatelessWidget {
                               hintText: 'Enter your Username',
                               prefixIcon: const Icon(Icons.person_2_outlined),
                               labelText: 'Username',
+
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),

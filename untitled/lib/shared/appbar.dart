@@ -18,10 +18,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.cyan,
+      backgroundColor: Colors.cyan.shade100,
       title: Text(
         title,
-        style: GoogleFonts.teko(
+        style: GoogleFonts.poppins(
           textStyle: const TextStyle(
             fontSize: 30,
             letterSpacing: 2,

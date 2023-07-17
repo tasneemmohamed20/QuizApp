@@ -8,14 +8,13 @@ import 'package:untitled/shared/CAtegories.dart';
 import 'score.dart';
 
 int index = 0;
-int counter = 0;
+int score = 0;
 
 class QuestionsScreen extends StatefulWidget {
-  // final Color? themeColor;
   final String? testName;
-  final String? dataMap;
+  final List? dataMap;
 
-  const QuestionsScreen({super.key, this.testName, this.dataMap});
+  const QuestionsScreen({super.key, this.testName, required this.dataMap});
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -36,9 +35,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[400],
         appBar: AppBar(
-          backgroundColor: Colors.cyan,
+          backgroundColor: Colors.cyan.shade100,
           leadingWidth: 80,
           centerTitle: true,
           automaticallyImplyLeading: false,
@@ -46,20 +45,20 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             child: Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: Text(widget.testName!,
-                  style: GoogleFonts.fasthand(
+                  style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
-                        // fontWeight: FontWeight.bold,
-                        fontSize: 28),
+                        fontWeight: FontWeight.bold, fontSize: 18),
                   )),
             ),
           ),
           title: Column(
             children: [
               Text(
-                "${index + 1}/${sportTest.length}",
-                style: GoogleFonts.playfairDisplay(
+                "${index + 1}/${widget.dataMap!.length}",
+                style: GoogleFonts.montserrat(
                     textStyle: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 30)),
+                        fontWeight: FontWeight.bold, fontSize: 30),
+                    letterSpacing: 2),
               ),
             ],
           ),
@@ -93,7 +92,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                     GestureDetector(
                       onTap: _flip,
                       child: TweenAnimationBuilder(
-                          tween: Tween<double>(begin: 0, end: isFlipped ? pi : 0),
+                          tween:
+                              Tween<double>(begin: 0, end: isFlipped ? pi : 0),
                           duration: const Duration(milliseconds: 500),
                           builder: (BuildContext context, double val, __) {
                             //here we will change the isBack val so we can change the content of the card
@@ -109,26 +109,26 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                               transform: Matrix4.identity()
                                 ..setEntry(3, 2, 0.001)
                                 ..rotateY(val),
-                              child: Container(
-                                  width: 309,
+                              child: SizedBox(
+                                  width: 320,
                                   height: 474,
                                   child: isBack
                                       ? Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(55.0),
-                                            image: const DecorationImage(
-                                              image: AssetImage("images/up.jpeg"),
+                                          decoration: const BoxDecoration(
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                  "images/cyan50.jpg"),
+                                              fit: BoxFit.fitWidth,
                                             ),
                                           ),
                                           child: Center(
                                               child: Text(
-                                            "Question : ${sportTest[index]["question"]}",
+                                            "Question : ${widget.dataMap![index]["question"]}",
                                             style: GoogleFonts.ptSans(
                                               textStyle: const TextStyle(
                                                   fontSize: 30.0,
                                                   fontWeight: FontWeight.bold,
-                                                  color: Colors.lime),
+                                                  color: Colors.white70),
                                             ),
                                             textAlign: TextAlign.center,
                                           )),
@@ -141,20 +141,21 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                           child: Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(55.0),
+                                                  BorderRadius.circular(100.0),
                                               image: const DecorationImage(
                                                 image: AssetImage(
-                                                    "images/down.jpeg"),
+                                                    "images/cyan50.jpg"),
                                               ),
                                             ),
                                             child: Center(
                                               child: Text(
-                                                "Answer: ${sportTest[index]["answers"][0]["ans"]}",
+                                                "True answer: ${widget.dataMap![index]["answers"][0]["ans"]}",
                                                 style: GoogleFonts.ptSans(
                                                   textStyle: const TextStyle(
                                                       fontSize: 30.0,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.lime),
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white70),
                                                 ),
                                                 textAlign: TextAlign.center,
                                               ),
@@ -166,68 +167,87 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                           }),
                     ),
 
-                    AnswerButton(  //true answer
-                        answerText: "${sportTest[index]["answers"][0]["ans"]}",
+                    for (int i = 0;
+                        i < (widget.dataMap![index]["answers"] as List).length;
+                        i++)
+                      AnswerButton(
+                        //true answer
+                        answerText:
+                            "${widget.dataMap![index]["answers"][i]["ans"]}",
+
                         onTap: () {
-                          counter++;
-                          if (index == sportTest.length - 1) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ScoreScreen(
-                                        score: counter,
-                                      )),
-                            );
-                          }
-                          else{
+                          score = score +
+                                  widget.dataMap![index]["answers"][i]["score"]
+                              as int;
+                          // _flip();
+    if (index == (widget.dataMap!.length-1)) {
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) => ScoreScreen(
+    score: score,
+    )),
+    );}
+                          if (widget.dataMap![index]["answers"][i]["score"]
+                                  as int ==
+                              1) {
                             setState(() {
                               index++;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => QuestionsScreen(testName: 'SPORTS',)),
-                              );
-                              // i changed the state (Data)
                             });
-
+                          } else {
+                            setState(() {
+                              _flip();
+                            });
                           }
                         },
-                    ),
+                      ),
 
-                    AnswerButton(
-                        answerText: "${sportTest[index]["answers"][1]["ans"]}",
-                        onTap: () {
-                          setState(() {
-                            isFlipped = !isFlipped;
-                          });
-                        }),
-                    AnswerButton(
-                        answerText: "${sportTest[index]["answers"][2]["ans"]}",
-                        onTap: () {
-                          setState(() {
-                            isFlipped = !isFlipped;
-                          });
-                        }),
-                    AnswerButton(
-                        answerText: "${sportTest[index]["answers"][3]["ans"]}",
-                        onTap: () {
-                          setState(() {
-                            isFlipped = !isFlipped;
-                          });
-                        }),
+                    // AnswerButton(
+                    //     answerText: "${widget.dataMap![index]["answers"][i]["ans"]}",
+                    //     onTap: () {
+                    //
+                    //       setState(() {
+                    //         isFlipped = !isFlipped;
+                    //       });
+                    //     }),
+                    // AnswerButton(
+                    //     answerText: "${widget.dataMap![index]["answers"][2]["ans"]}",
+                    //     onTap: () {
+                    //       setState(() {
+                    //         isFlipped = !isFlipped;
+                    //       });
+                    //     }),
+                    // AnswerButton(
+                    //     answerText: "${widget.dataMap![index]["answers"][3]["ans"]}",
+                    //     onTap: () {
+                    //       setState(() {
+                    //         isFlipped = !isFlipped;
+                    //       });
+                    //     }),
 
                     Align(
                       alignment: AlignmentDirectional.bottomEnd,
-                      child:
-                      CustomElevatedButton(
-                        onPressed: () {
+                      child: CustomElevatedButton(onPressed: () {
+                        if (index == sportTest.length - 1) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ScoreScreen(score: counter,)),
+                                builder: (context) => ScoreScreen(
+                                      score: score,
+                                    )),
                           );
-                        },
-                      ),
+                        } else {
+                          setState(() {
+                            index++;
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) =>  QuestionsScreen(testName: 'SPORTS', dataMap: sportTest,)),
+                            // );
+                            // i changed the state (Data)
+                          });
+                        }
+                      }),
                     )
                   ],
                 ),

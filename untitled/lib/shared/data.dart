@@ -39,9 +39,9 @@ List sportTest = [
 List historyTest = [
   /// map of first question and his answers and the score of each answer
   {
-    "question": "How many time world cup takeplace in 12 years",
+    "question": "History",
     "answers": [
-      {"ans": "2 times", "score": 0},
+      {"ans": "lala", "score": 0},
       {"ans": "3 times", "score": 1},
       {"ans": "4 times", "score": 0},
       {"ans": "5 times", "score": 0},
@@ -50,9 +50,9 @@ List historyTest = [
 
   /// map of second question and his answers and the score of each answer
   {
-    "question": "How many team had won the world cup",
+    "question": "History2",
     "answers": [
-      {"ans": "8 times", "score": 1},
+      {"ans": "8 ", "score": 1},
       {"ans": "10 times", "score": 0},
       {"ans": "12 times", "score": 0},
       {"ans": "14 times", "score": 0},
@@ -60,9 +60,9 @@ List historyTest = [
   },
 
   {
-    "question": "who is the best player in history",
+    "question": "History3",
     "answers": [
-      {"ans": "Messi", "score": 0},
+      {"ans": "fawzi", "score": 0},
       {"ans": "Messi", "score": 0},
       {"ans": "Messi", "score": 0},
       {"ans": "Mohamed Abdelghani", "score": 1},

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Screens/openingscreen.dart';
-import 'package:untitled/Screens/sportqustion.dart';
 import 'package:untitled/Screens/quest.dart';
-import 'generalquestion.dart';
-import 'historyquestion.dart';
+import '../shared/data.dart';
 import 'package:untitled/shared/appbar.dart';
 import 'package:untitled/shared/CAtegories.dart';
 
@@ -12,7 +10,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[400],
         appBar: CustomAppBar(
             onLogoTap: () {
               Navigator.push(
@@ -22,97 +20,90 @@ class Categories extends StatelessWidget {
             },
             title: 'CATEGORIES'),
         body: SafeArea(
-            child: Column(children: [
+            child: Column(
+
+              mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+              const SizedBox(height: 25),
+
           Flexible(
               // Sport part
               flex: 1,
+
               child: Stack(
                   children: [
-                const CustomPageView(
-                  assetPaths: [
+                 CustomPageView(
+                  assetPaths: const [
                     'images/basketball.jpeg',
                     'images/football.jpeg',
                     'images/vollyball.png',
                   ],
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => QuestionsScreen(
+                            testName: 'SPORTS',
+                            dataMap: sportTest,
+                          )),
+                    );
+                  },
                 ),
-                Align(
-                  alignment: AlignmentDirectional.bottomEnd,
-                  child: CustomElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>  QuestionsScreen(
-                              testName: 'SPORTS',
-                              dataMap: 'sportTest',
 
-                            )),
-                      );
-                    },
-                  ),
-                ),
                 const Align(
                     alignment: AlignmentDirectional.topStart,
                     child: CustomTextContainer(text: 'SPORTS',
                 )
                 )])),
-          const SizedBox(height: 5),
-          Flexible(
+
+                  Flexible(
               //history part
               flex: 1,
               child: Stack(
                 children: [
-                  const CustomPageView(
-                    assetPaths: [
+                   CustomPageView(
+                    assetPaths: const [
                       'images/frenchrevelution.jpg',
                       'images/contastina.jpg',
                       'images/horoobSalebya.png',
                     ],
+                     onTap: () =>   Navigator.push(
+                       context,
+                       MaterialPageRoute(
+                           builder: (context) => QuestionsScreen(
+                             testName: 'HISTORY',
+                             dataMap: historyTest,
+
+                           )),
+                     )
                   ),
-                  Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: CustomElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => QuestionsScreen(
-                                testName: 'HISTORY',
-                              )),
-                        );
-                      },
-                    ),
-                  ),
+
                   const Align(
                       alignment: AlignmentDirectional.topStart,
                       child:CustomTextContainer(text: 'HISTORY'),
                   )
                 ],
               )),
-          const SizedBox(height: 5),
+
           Flexible(
               //general
               flex: 1,
               child: Stack(
                 children: [
-                  const CustomPageView(
-                    assetPaths: [
+                   CustomPageView(
+                    assetPaths: const [
                       'images/chemistry.jpeg',
                       'images/physics.jpg',
                       'images/plant.jpg',
                     ],
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: CustomElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const GeneralQuestions()),
-                        );
-                      },
-                    ),
+                       onTap: () =>   Navigator.push(
+                         context,
+                         MaterialPageRoute(
+                             builder: (context) => QuestionsScreen(
+                               testName: 'GENERAL',
+                               dataMap: generalTest)),
+                       )
                   ),
                   const Align(
                       alignment: AlignmentDirectional.topStart,
@@ -121,7 +112,6 @@ class Categories extends StatelessWidget {
                   )
                 ],
               )),
-          const SizedBox(height: 5),
         ])));
   }
 }

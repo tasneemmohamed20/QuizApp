@@ -3,20 +3,37 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomPageView extends StatelessWidget {
   final List<String> assetPaths;
+  final VoidCallback onTap;
 
   const CustomPageView({super.key,
     required this.assetPaths,
+    required this.onTap
   });
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      children: assetPaths.map((assetPath) {
-        return Image.asset(
-          assetPath,
-          fit: BoxFit.cover,
-        );
-      }).toList(),
+    return Center(
+      child: GestureDetector(
+        onTap: onTap,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15), // Set the border radius
+          child: Container(
+            width: MediaQuery.of(context).size.width*0.85,
+            height: 190,
+
+            child: PageView(
+
+              children: assetPaths.map((assetPath) {
+                return Image.asset(
+                  assetPath,
+                  fit: BoxFit.cover,
+
+                );
+              }).toList(),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -37,7 +54,7 @@ class CustomElevatedButton extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shape: const CircleBorder(),
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.cyan.shade100,
         padding: const EdgeInsets.all(7.0),
       ),
       child: const Icon(
@@ -59,18 +76,23 @@ class CustomTextContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(7, 2, 7, 2),
-      margin: const EdgeInsets.only(top: 5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.cyan,
-      ),
+    return Padding(
+
+      padding:
+      EdgeInsets.only(left: 60, top: 0),
+
       child: Text(
         text,
-        style: GoogleFonts.teko(
-          textStyle: const TextStyle(fontSize: 25, letterSpacing: 1),
+        style: GoogleFonts.poppins(
+          textStyle: const TextStyle(fontSize: 20,
+            fontWeight: FontWeight.bold,
+            shadows: [Shadow(
+              color: Colors.black,
+              offset: Offset(1, 1),
+            ),]
+          ),
         ),
+
       ),
     );
   }
